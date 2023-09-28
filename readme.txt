@@ -1,4 +1,6 @@
-EquipBestItem - Updated
+EquipBestItem Reloaded 
+A GUI based auto equip best item mod. 
+Made for Mount & Blade II Bannerlord September 18 2023 v1.1.6 release
 
 Installation:
 1. Copy files to Mount & Blade II Bannerlord/Modules

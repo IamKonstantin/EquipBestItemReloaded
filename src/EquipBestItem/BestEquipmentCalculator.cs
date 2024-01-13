@@ -127,7 +127,18 @@ namespace EquipBestItem
                 if (thrustDamage > 0f)
                     thrustSpeed = mod.ModifySpeed(thrustSpeed);
                 if (maxDataValue > 0f)
-                    maxDataValue = mod.ModifyHitPoints((short)maxDataValue);
+                {
+                    if(primaryWeapon.WeaponClass == WeaponClass.SmallShield || primaryWeapon.WeaponClass == WeaponClass.LargeShield)
+                    {
+                        maxDataValue = mod.ModifyHitPoints((short)maxDataValue);
+                    }
+                    else
+                    {
+                        maxDataValue = mod.ModifyStackCount((short)maxDataValue);
+                    }
+                    
+                }
+                    
                 //WeaponWeight *= mod.WeightMultiplier;
 
                 // Ensure that the values always clamped between 0 to infinity

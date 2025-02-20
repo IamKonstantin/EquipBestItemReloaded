@@ -133,7 +133,7 @@ namespace EquipBestItem
         /// <returns></returns>
         private static bool IsCamelHarness(SPItemVM item)
         {
-            return item != null && item.StringId.StartsWith("camel_sadd");
+            return item != null && item.StringId.StartsWith("camel_sadd", System.StringComparison.InvariantCulture);
         }
 
         private static bool IsCouchWeapon(EquipmentElement weapon)

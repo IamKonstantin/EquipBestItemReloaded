@@ -1,5 +1,6 @@
 ﻿using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.InputSystem;
+using TaleWorlds.Library;
 
 namespace EquipBestItem.Layers
 {
@@ -55,7 +56,7 @@ namespace EquipBestItem.Layers
 
             // Increments the value depending the following keys
             _viewModel.IncrementBy5 = TaleWorlds.InputSystem.Input.IsKeyDown(InputKey.LeftShift);
-            _viewModel.IncrementBy10 = TaleWorlds.InputSystem.Input.IsKeyDown(InputKey.LeftControl);
+            _viewModel.IncrementByExp = TaleWorlds.InputSystem.Input.IsKeyDown(InputKey.LeftControl);
         }
     }
 }

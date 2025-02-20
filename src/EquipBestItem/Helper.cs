@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using TaleWorlds.Core;
+using TaleWorlds.Library;
 
 namespace EquipBestItem
 {
@@ -73,6 +75,24 @@ namespace EquipBestItem
                 }
             }
             return null;
+        }
+
+        public static void displayException(System.Exception ex)
+        {
+            if (ex == null)
+                return;
+            String message = ex.Message;
+            var stackTrace = new System.Diagnostics.StackTrace(ex, true);
+            var frame = stackTrace.GetFrame(0);
+            if (frame != null)
+            {
+                var method = frame.GetMethod();
+                String className = frame.GetMethod()?.DeclaringType?.Name ?? "Unknown class";
+                String methodName = frame.GetMethod()?.Name ?? "Unknown method";
+                int line = frame.GetFileLineNumber();
+                message += "\nFrom " + className + "::" + methodName + ":" + line;
+            }
+            InformationManager.DisplayMessage(new InformationMessage(message));
         }
 
         /// <summary>

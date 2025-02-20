@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 
@@ -68,7 +69,7 @@ namespace EquipBestItem
             ) / sum;
 
 #if DEBUG
-            InformationManager.DisplayMessage(new InformationMessage(String.Format("{0}: HA {1}, BA {2}, LA {3}, AA {4}, W {5}",
+            InformationManager.DisplayMessage(new InformationMessage(String.Format(CultureInfo.InvariantCulture, "{0}: HA {1}, BA {2}, LA {3}, AA {4}, W {5}",
                             sourceItem.Item.Name, HeadArmor, BodyArmor, LegArmor, ArmArmor, Weight)));
 
             InformationManager.DisplayMessage(new InformationMessage("Total score: " + value));
@@ -324,7 +325,7 @@ namespace EquipBestItem
             float finalValue = value / sum;
 
 #if DEBUG
-            InformationManager.DisplayMessage(new InformationMessage(String.Format("{0}: Acc {1}, BA {2}, HL {3}, HP {4}, MS {5}, SD {6}, SS {7}, TD {8}, TS {9}, WL {10}, W {11}",
+            InformationManager.DisplayMessage(new InformationMessage(String.Format(CultureInfo.InvariantCulture, "{0}: Acc {1}, BA {2}, HL {3}, HP {4}, MS {5}, SD {6}, SS {7}, TD {8}, TS {9}, WL {10}, W {11}",
                             sourceItem.Item.Name, accuracy, bodyArmor, handling, maxDataValue, missileSpeed, swingDamage, swingSpeed, thrustDamage, thrustSpeed, weaponLength, weaponWeight)));
 
             InformationManager.DisplayMessage(new InformationMessage("Total score: " + finalValue));
@@ -375,7 +376,7 @@ namespace EquipBestItem
             ) / sum;
 
 #if DEBUG
-            InformationManager.DisplayMessage(new InformationMessage(String.Format("{0}: CD {1}, HP {2}, MR {3}, SD {4}",
+            InformationManager.DisplayMessage(new InformationMessage(String.Format(CultureInfo.InvariantCulture, "{0}: CD {1}, HP {2}, MR {3}, SD {4}",
                             sourceItem.Item.Name, ChargeDamage, HitPoints, Maneuver, Speed)));
 
             InformationManager.DisplayMessage(new InformationMessage("Total score: " + value));

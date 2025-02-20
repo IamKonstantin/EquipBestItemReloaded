@@ -128,7 +128,7 @@ namespace EquipBestItem
                     thrustSpeed = mod.ModifySpeed(thrustSpeed);
                 if (maxDataValue > 0f)
                 {
-                    if(primaryWeapon.WeaponClass == WeaponClass.SmallShield || primaryWeapon.WeaponClass == WeaponClass.LargeShield)
+                    if(primaryWeaponItem.WeaponClass == WeaponClass.SmallShield || primaryWeaponItem.WeaponClass == WeaponClass.LargeShield)
                     {
                         maxDataValue = mod.ModifyHitPoints((short)maxDataValue);
                     }

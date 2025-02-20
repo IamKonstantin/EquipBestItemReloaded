@@ -290,37 +290,37 @@ namespace EquipBestItem
             switch (equipmentIndex)
 			{
 			case EquipmentIndex.WeaponItemBeginSlot:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips weapon in the first slot: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips weapon in the first slot: " + itemName));
 				break;
 			case EquipmentIndex.Weapon1:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips weapon in the second slot: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips weapon in the second slot: " + itemName));
 				break;
 			case EquipmentIndex.Weapon2:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips weapon in the third slot: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips weapon in the third slot: " + itemName));
 				break;
 			case EquipmentIndex.Weapon3:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips weapon in the fourth slot: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips weapon in the fourth slot: " + itemName));
 				break;
 			case EquipmentIndex.NumAllWeaponSlots:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips helmet: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips helmet: " + itemName));
 				break;
 			case EquipmentIndex.Body:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips body armor: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips body armor: " + itemName));
 				break;
 			case EquipmentIndex.Leg:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips boots: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips boots: " + itemName));
 				break;
 			case EquipmentIndex.Gloves:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips gloves: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips gloves: " + itemName));
 				break;
 			case EquipmentIndex.Cape:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips cape: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips cape: " + itemName));
 				break;
 			case EquipmentIndex.ArmorItemEndSlot:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips horse: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips horse: " + itemName));
 				break;
 			case EquipmentIndex.HorseHarness:
-				InformationManager.DisplayMessage(new InformationMessage(str + " equips horse harness: " + itemName));
+				InformationManager.DisplayMessage(new InformationMessage(name + " equips horse harness: " + itemName));
 				break;
 			}
         }

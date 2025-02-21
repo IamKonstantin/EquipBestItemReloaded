@@ -318,6 +318,7 @@
     <Compile Include="BestEquipmentCalculator.cs" />
     <Compile Include="BestEquipmentUpgrader.cs" />
     <Compile Include="CharacterData.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Layers\MainLayer.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\FilterViewModel.cs" />

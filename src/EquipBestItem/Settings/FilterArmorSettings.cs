@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
+
 namespace EquipBestItem
 {
     [Serializable]
@@ -16,35 +17,35 @@ namespace EquipBestItem
         public int ChargeBonus { get; set; } = 1;
         public int ArmorWeight { get; set; } = 0;
 
-        public void Set(CharacterSettings.ValueType valueType, int value)
+        public void Set(Parameter param, int value)
         {
-            switch (valueType)
+            switch (param)
             {
-                case CharacterSettings.ValueType.HeadArmor: HeadArmor = value; break;
-                case CharacterSettings.ValueType.ArmorBodyArmor: ArmorBodyArmor = value; break;
-                case CharacterSettings.ValueType.LegArmor: LegArmor = value; break;
-                case CharacterSettings.ValueType.ArmArmor: ArmArmor = value; break;
-                case CharacterSettings.ValueType.ManeuverBonus: ManeuverBonus = value; break;
-                case CharacterSettings.ValueType.SpeedBonus: SpeedBonus = value; break;
-                case CharacterSettings.ValueType.ChargeBonus: ChargeBonus = value; break;
-                case CharacterSettings.ValueType.ArmorWeight: ArmorWeight = value; break;
-                default: throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                case Parameter.HeadArmor: HeadArmor = value; break;
+                case Parameter.ArmorBodyArmor: ArmorBodyArmor = value; break;
+                case Parameter.LegArmor: LegArmor = value; break;
+                case Parameter.ArmArmor: ArmArmor = value; break;
+                case Parameter.ManeuverBonus: ManeuverBonus = value; break;
+                case Parameter.SpeedBonus: SpeedBonus = value; break;
+                case Parameter.ChargeBonus: ChargeBonus = value; break;
+                case Parameter.ArmorWeight: ArmorWeight = value; break;
+                default: throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }
         }
 
-        public int Get(CharacterSettings.ValueType valueType)
+        public int Get(Parameter param)
         {
-            switch (valueType)
+            switch (param)
             {
-                case CharacterSettings.ValueType.HeadArmor: return HeadArmor;
-                case CharacterSettings.ValueType.ArmorBodyArmor: return ArmorBodyArmor;
-                case CharacterSettings.ValueType.LegArmor: return LegArmor;
-                case CharacterSettings.ValueType.ArmArmor: return ArmArmor;
-                case CharacterSettings.ValueType.ManeuverBonus: return ManeuverBonus;
-                case CharacterSettings.ValueType.SpeedBonus: return SpeedBonus;
-                case CharacterSettings.ValueType.ChargeBonus: return ChargeBonus;
-                case CharacterSettings.ValueType.ArmorWeight: return ArmorWeight;
-                default: throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                case Parameter.HeadArmor: return HeadArmor;
+                case Parameter.ArmorBodyArmor: return ArmorBodyArmor;
+                case Parameter.LegArmor: return LegArmor;
+                case Parameter.ArmArmor: return ArmArmor;
+                case Parameter.ManeuverBonus: return ManeuverBonus;
+                case Parameter.SpeedBonus: return SpeedBonus;
+                case Parameter.ChargeBonus: return ChargeBonus;
+                case Parameter.ArmorWeight: return ArmorWeight;
+                default: throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }
         }
 

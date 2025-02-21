@@ -17,41 +17,41 @@ namespace EquipBestItem
         public int WeaponWeight { get; set; } = 0;
         public int WeaponBodyArmor { get; set; } = 1;
         
-        public int Get(CharacterSettings.ValueType valueType)
+        public int Get(Parameter param)
         {
-            switch (valueType)
+            switch (param)
             {
-                case CharacterSettings.ValueType.MaxDataValue: return MaxDataValue;
-                case CharacterSettings.ValueType.ThrustSpeed: return ThrustSpeed;
-                case CharacterSettings.ValueType.SwingSpeed: return SwingSpeed;
-                case CharacterSettings.ValueType.MissileSpeed: return MissileSpeed;
-                case CharacterSettings.ValueType.WeaponLength: return WeaponLength;
-                case CharacterSettings.ValueType.ThrustDamage: return ThrustDamage;
-                case CharacterSettings.ValueType.SwingDamage: return SwingDamage;
-                case CharacterSettings.ValueType.Accuracy: return Accuracy;
-                case CharacterSettings.ValueType.Handling: return Handling;
-                case CharacterSettings.ValueType.WeaponWeight: return WeaponWeight;
-                case CharacterSettings.ValueType.WeaponBodyArmor: return WeaponBodyArmor;
-                default: throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                case Parameter.MaxDataValue: return MaxDataValue;
+                case Parameter.ThrustSpeed: return ThrustSpeed;
+                case Parameter.SwingSpeed: return SwingSpeed;
+                case Parameter.MissileSpeed: return MissileSpeed;
+                case Parameter.WeaponLength: return WeaponLength;
+                case Parameter.ThrustDamage: return ThrustDamage;
+                case Parameter.SwingDamage: return SwingDamage;
+                case Parameter.Accuracy: return Accuracy;
+                case Parameter.Handling: return Handling;
+                case Parameter.WeaponWeight: return WeaponWeight;
+                case Parameter.WeaponBodyArmor: return WeaponBodyArmor;
+                default: throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }
         }
 
-        public void Set(CharacterSettings.ValueType valueType, int value)
+        public void Set(Parameter param, int value)
         {
-            switch (valueType)
+            switch (param)
             {
-                case CharacterSettings.ValueType.MaxDataValue: MaxDataValue = value; break;
-                case CharacterSettings.ValueType.ThrustSpeed: ThrustSpeed = value; break;
-                case CharacterSettings.ValueType.SwingSpeed: SwingSpeed = value; break;
-                case CharacterSettings.ValueType.MissileSpeed: MissileSpeed = value; break;
-                case CharacterSettings.ValueType.WeaponLength: WeaponLength = value; break;
-                case CharacterSettings.ValueType.ThrustDamage: ThrustDamage = value; break;
-                case CharacterSettings.ValueType.SwingDamage: SwingDamage = value; break;
-                case CharacterSettings.ValueType.Accuracy: Accuracy = value; break;
-                case CharacterSettings.ValueType.Handling: Handling = value; break;
-                case CharacterSettings.ValueType.WeaponWeight: WeaponWeight = value; break;
-                case CharacterSettings.ValueType.WeaponBodyArmor: WeaponBodyArmor = value; break;
-                default: throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                case Parameter.MaxDataValue: MaxDataValue = value; break;
+                case Parameter.ThrustSpeed: ThrustSpeed = value; break;
+                case Parameter.SwingSpeed: SwingSpeed = value; break;
+                case Parameter.MissileSpeed: MissileSpeed = value; break;
+                case Parameter.WeaponLength: WeaponLength = value; break;
+                case Parameter.ThrustDamage: ThrustDamage = value; break;
+                case Parameter.SwingDamage: SwingDamage = value; break;
+                case Parameter.Accuracy: Accuracy = value; break;
+                case Parameter.Handling: Handling = value; break;
+                case Parameter.WeaponWeight: WeaponWeight = value; break;
+                case Parameter.WeaponBodyArmor: WeaponBodyArmor = value; break;
+                default: throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }
         }
 

@@ -885,37 +885,37 @@ namespace EquipBestItem
         }
         #endregion DataSourceProperties
 
-        private void setText(CharacterSettings.ValueType valueType, string text)
+        private void setText(Parameter param, string text)
         {
-            switch (valueType)
+            switch (param)
             {
-                case CharacterSettings.ValueType.MaxDataValue: MaxDataValue = text; break;
-                case CharacterSettings.ValueType.ThrustSpeed: ThrustSpeed = text; break;
-                case CharacterSettings.ValueType.SwingSpeed: SwingSpeed = text; break;
-                case CharacterSettings.ValueType.MissileSpeed: MissileSpeed = text; break;
-                case CharacterSettings.ValueType.WeaponLength: WeaponLength = text; break;
-                case CharacterSettings.ValueType.ThrustDamage: ThrustDamage = text; break;
-                case CharacterSettings.ValueType.SwingDamage: SwingDamage = text; break;
-                case CharacterSettings.ValueType.Accuracy: Accuracy = text; break;
-                case CharacterSettings.ValueType.Handling: Handling = text; break;
-                case CharacterSettings.ValueType.WeaponWeight: WeaponWeight = text; break;
-                case CharacterSettings.ValueType.WeaponBodyArmor: WeaponBodyArmor = text; break;
+                case Parameter.MaxDataValue: MaxDataValue = text; break;
+                case Parameter.ThrustSpeed: ThrustSpeed = text; break;
+                case Parameter.SwingSpeed: SwingSpeed = text; break;
+                case Parameter.MissileSpeed: MissileSpeed = text; break;
+                case Parameter.WeaponLength: WeaponLength = text; break;
+                case Parameter.ThrustDamage: ThrustDamage = text; break;
+                case Parameter.SwingDamage: SwingDamage = text; break;
+                case Parameter.Accuracy: Accuracy = text; break;
+                case Parameter.Handling: Handling = text; break;
+                case Parameter.WeaponWeight: WeaponWeight = text; break;
+                case Parameter.WeaponBodyArmor: WeaponBodyArmor = text; break;
 
-                case CharacterSettings.ValueType.HeadArmor: HeadArmor = text; break;
-                case CharacterSettings.ValueType.ArmorBodyArmor: ArmorBodyArmor = text; break;
-                case CharacterSettings.ValueType.LegArmor: LegArmor = text; break;
-                case CharacterSettings.ValueType.ArmArmor: ArmArmor = text; break;
+                case Parameter.HeadArmor: HeadArmor = text; break;
+                case Parameter.ArmorBodyArmor: ArmorBodyArmor = text; break;
+                case Parameter.LegArmor: LegArmor = text; break;
+                case Parameter.ArmArmor: ArmArmor = text; break;
 
-                case CharacterSettings.ValueType.ManeuverBonus: ManeuverBonus = text; break;
-                case CharacterSettings.ValueType.SpeedBonus: SpeedBonus = text; break;
-                case CharacterSettings.ValueType.ChargeBonus: ChargeBonus = text; break;
-                case CharacterSettings.ValueType.ArmorWeight: ArmorWeight = text; break;
+                case Parameter.ManeuverBonus: ManeuverBonus = text; break;
+                case Parameter.SpeedBonus: SpeedBonus = text; break;
+                case Parameter.ChargeBonus: ChargeBonus = text; break;
+                case Parameter.ArmorWeight: ArmorWeight = text; break;
 
-                case CharacterSettings.ValueType.ChargeDamage: ChargeDamage = text; break;
-                case CharacterSettings.ValueType.HitPoints: HitPoints = text; break;
-                case CharacterSettings.ValueType.Maneuver: Maneuver = text; break;
-                case CharacterSettings.ValueType.Speed: Speed = text; break;
-                default: throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                case Parameter.ChargeDamage: ChargeDamage = text; break;
+                case Parameter.HitPoints: HitPoints = text; break;
+                case Parameter.Maneuver: Maneuver = text; break;
+                case Parameter.Speed: Speed = text; break;
+                default: throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }
         }
 
@@ -1138,7 +1138,7 @@ namespace EquipBestItem
             InformationManager.DisplayMessage(new InformationMessage("FilterVMRefreshValue")); 
 #endif
         }
-        public void ChangeSetting(CharacterSettings.Category category, CharacterSettings.ValueType valueType, bool increase)
+        public void ChangeSetting(Category category, Parameter param, bool increase)
         {
             try
             {
@@ -1146,9 +1146,9 @@ namespace EquipBestItem
                 int previousValue = 0;
                 switch (category)
                 {
-                    case CharacterSettings.Category.Weapon: previousValue = this.CharacterSettings.FilterWeapon[CurrentSlot].Get(valueType); break;
-                    case CharacterSettings.Category.Armor:  previousValue = this.CharacterSettings.FilterArmor[CurrentSlot].Get(valueType); break;
-                    case CharacterSettings.Category.Mount:  previousValue = this.CharacterSettings.FilterMount.Get(valueType); break;
+                    case Category.Weapon: previousValue = this.CharacterSettings.FilterWeapon[CurrentSlot].Get(param); break;
+                    case Category.Armor:  previousValue = this.CharacterSettings.FilterArmor[CurrentSlot].Get(param); break;
+                    case Category.Mount:  previousValue = this.CharacterSettings.FilterMount.Get(param); break;
                     default: throw new ArgumentOutOfRangeException(nameof(category), category, null);
                 }
 
@@ -1180,14 +1180,14 @@ namespace EquipBestItem
                 // save
                 switch (category)
                 {
-                    case CharacterSettings.Category.Weapon: this.CharacterSettings.FilterWeapon[CurrentSlot].Set(valueType, futureValue); break;
-                    case CharacterSettings.Category.Armor: this.CharacterSettings.FilterArmor[CurrentSlot].Set(valueType, futureValue); break;
-                    case CharacterSettings.Category.Mount: this.CharacterSettings.FilterMount.Set(valueType, futureValue); break;
+                    case Category.Weapon: this.CharacterSettings.FilterWeapon[CurrentSlot].Set(param, futureValue); break;
+                    case Category.Armor: this.CharacterSettings.FilterArmor[CurrentSlot].Set(param, futureValue); break;
+                    case Category.Mount: this.CharacterSettings.FilterMount.Set(param, futureValue); break;
                     default: throw new ArgumentOutOfRangeException(nameof(category), category, null);
                 }
 
                 // show
-                setText(valueType, futureValue.ToString(CultureInfo.InvariantCulture));
+                setText(param, futureValue.ToString(CultureInfo.InvariantCulture));
 
                 // ?
                 this.RefreshValues();
@@ -1204,210 +1204,210 @@ namespace EquipBestItem
         #region ExecuteMethods
         public void ExecuteSwingDamagePrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.SwingDamage, false);
+            ChangeSetting(Category.Weapon, Parameter.SwingDamage, false);
         }
         public void ExecuteSwingDamageNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.SwingDamage, true);
+            ChangeSetting(Category.Weapon, Parameter.SwingDamage, true);
         }
 
         public void ExecuteSwingSpeedPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.SwingSpeed, false);
+            ChangeSetting(Category.Weapon, Parameter.SwingSpeed, false);
         }
         public void ExecuteSwingSpeedNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.SwingSpeed, true);
+            ChangeSetting(Category.Weapon, Parameter.SwingSpeed, true);
         }
 
         public void ExecuteThrustDamagePrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.ThrustDamage, false);
+            ChangeSetting(Category.Weapon, Parameter.ThrustDamage, false);
         }
         public void ExecuteThrustDamageNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.ThrustDamage, true);
+            ChangeSetting(Category.Weapon, Parameter.ThrustDamage, true);
         }
 
         public void ExecuteThrustSpeedPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.ThrustSpeed, false);
+            ChangeSetting(Category.Weapon, Parameter.ThrustSpeed, false);
         }
         public void ExecuteThrustSpeedNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.ThrustSpeed, true);
+            ChangeSetting(Category.Weapon, Parameter.ThrustSpeed, true);
         }
 
         public void ExecuteWeaponLengthPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.WeaponLength, false);
+            ChangeSetting(Category.Weapon, Parameter.WeaponLength, false);
         }
         public void ExecuteWeaponLengthNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.WeaponLength, true);
+            ChangeSetting(Category.Weapon, Parameter.WeaponLength, true);
         }
 
         public void ExecuteHandlingPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.Handling, false);
+            ChangeSetting(Category.Weapon, Parameter.Handling, false);
         }
         public void ExecuteHandlingNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.Handling, true);
+            ChangeSetting(Category.Weapon, Parameter.Handling, true);
         }
 
         public void ExecuteWeaponWeightPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.WeaponWeight, false);
+            ChangeSetting(Category.Weapon, Parameter.WeaponWeight, false);
         }
         public void ExecuteWeaponWeightNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.WeaponWeight, true);
+            ChangeSetting(Category.Weapon, Parameter.WeaponWeight, true);
         }
 
         public void ExecuteMissileSpeedPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.MissileSpeed, false);
+            ChangeSetting(Category.Weapon, Parameter.MissileSpeed, false);
         }
         public void ExecuteMissileSpeedNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.MissileSpeed, true);
+            ChangeSetting(Category.Weapon, Parameter.MissileSpeed, true);
         }
 
         public void ExecuteAccuracyPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.Accuracy, false);
+            ChangeSetting(Category.Weapon, Parameter.Accuracy, false);
         }
         public void ExecuteAccuracyNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.Accuracy, true);
+            ChangeSetting(Category.Weapon, Parameter.Accuracy, true);
         }
 
         public void ExecuteWeaponBodyArmorPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.WeaponBodyArmor, false);
+            ChangeSetting(Category.Weapon, Parameter.WeaponBodyArmor, false);
         }
         public void ExecuteWeaponBodyArmorNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.WeaponBodyArmor, true);
+            ChangeSetting(Category.Weapon, Parameter.WeaponBodyArmor, true);
         }
 
         public void ExecuteMaxDataValuePrev()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.MaxDataValue, false);
+            ChangeSetting(Category.Weapon, Parameter.MaxDataValue, false);
         }
         public void ExecuteMaxDataValueNext()
         {
-            ChangeSetting(CharacterSettings.Category.Weapon, CharacterSettings.ValueType.MaxDataValue, true);
+            ChangeSetting(Category.Weapon, Parameter.MaxDataValue, true);
         }
 
 
         public void ExecuteHeadArmorPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.HeadArmor, false);
+            ChangeSetting(Category.Armor, Parameter.HeadArmor, false);
         }
         public void ExecuteHeadArmorNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.HeadArmor, true);
+            ChangeSetting(Category.Armor, Parameter.HeadArmor, true);
         }
 
         public void ExecuteArmorBodyArmorPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ArmorBodyArmor, false);
+            ChangeSetting(Category.Armor, Parameter.ArmorBodyArmor, false);
         }
         public void ExecuteArmorBodyArmorNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ArmorBodyArmor, true);
+            ChangeSetting(Category.Armor, Parameter.ArmorBodyArmor, true);
         }
 
         public void ExecuteLegArmorPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.LegArmor, false);
+            ChangeSetting(Category.Armor, Parameter.LegArmor, false);
         }
         public void ExecuteLegArmorNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.LegArmor, true);
+            ChangeSetting(Category.Armor, Parameter.LegArmor, true);
         }
 
         public void ExecuteArmArmorPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ArmArmor, false);
+            ChangeSetting(Category.Armor, Parameter.ArmArmor, false);
         }
         public void ExecuteArmArmorNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ArmArmor, true);
+            ChangeSetting(Category.Armor, Parameter.ArmArmor, true);
         }
 
         public void ExecuteManeuverBonusPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ManeuverBonus, false);
+            ChangeSetting(Category.Armor, Parameter.ManeuverBonus, false);
         }
         public void ExecuteManeuverBonusNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ManeuverBonus, true);
+            ChangeSetting(Category.Armor, Parameter.ManeuverBonus, true);
         }
 
         public void ExecuteSpeedBonusPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.SpeedBonus, false);
+            ChangeSetting(Category.Armor, Parameter.SpeedBonus, false);
         }
         public void ExecuteSpeedBonusNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.SpeedBonus, true);
+            ChangeSetting(Category.Armor, Parameter.SpeedBonus, true);
         }
 
         public void ExecuteChargeBonusPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ChargeBonus, false);
+            ChangeSetting(Category.Armor, Parameter.ChargeBonus, false);
         }
         public void ExecuteChargeBonusNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ChargeBonus, true);
+            ChangeSetting(Category.Armor, Parameter.ChargeBonus, true);
         }
 
         public void ExecuteArmorWeightPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ArmorWeight, false);
+            ChangeSetting(Category.Armor, Parameter.ArmorWeight, false);
         }
         public void ExecuteArmorWeightNext()
         {
-            ChangeSetting(CharacterSettings.Category.Armor, CharacterSettings.ValueType.ArmorWeight, true);
+            ChangeSetting(Category.Armor, Parameter.ArmorWeight, true);
         }
 
         public void ExecuteChargeDamagePrev()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.ChargeDamage, false);
+            ChangeSetting(Category.Mount, Parameter.ChargeDamage, false);
         }
         public void ExecuteChargeDamageNext()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.ChargeDamage, true);
+            ChangeSetting(Category.Mount, Parameter.ChargeDamage, true);
         }
 
         public void ExecuteHitPointsPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.HitPoints, false);
+            ChangeSetting(Category.Mount, Parameter.HitPoints, false);
         }
         public void ExecuteHitPointsNext()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.HitPoints, true);
+            ChangeSetting(Category.Mount, Parameter.HitPoints, true);
         }
 
         public void ExecuteManeuverPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.Maneuver, false);
+            ChangeSetting(Category.Mount, Parameter.Maneuver, false);
         }
         public void ExecuteManeuverNext()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.Maneuver, true);
+            ChangeSetting(Category.Mount, Parameter.Maneuver, true);
         }
 
         public void ExecuteSpeedPrev()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.Speed, false);
+            ChangeSetting(Category.Mount, Parameter.Speed, false);
         }
         public void ExecuteSpeedNext()
         {
-            ChangeSetting(CharacterSettings.Category.Mount, CharacterSettings.ValueType.Speed, true);
+            ChangeSetting(Category.Mount, Parameter.Speed, true);
         }
 
 

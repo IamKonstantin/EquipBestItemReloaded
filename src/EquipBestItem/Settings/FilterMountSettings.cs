@@ -16,28 +16,28 @@ namespace EquipBestItem
 
         }
 
-        public int Get(CharacterSettings.ValueType valueType)
+        public int Get(Parameter param)
         {
-            switch (valueType)
+            switch (param)
             {
-                case CharacterSettings.ValueType.ChargeDamage: return ChargeDamage;
-                case CharacterSettings.ValueType.HitPoints: return HitPoints;
-                case CharacterSettings.ValueType.Maneuver: return Maneuver;
-                case CharacterSettings.ValueType.Speed: return Speed;
+                case Parameter.ChargeDamage: return ChargeDamage;
+                case Parameter.HitPoints: return HitPoints;
+                case Parameter.Maneuver: return Maneuver;
+                case Parameter.Speed: return Speed;
 
-                default: throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                default: throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }
         }
 
-        public void Set(CharacterSettings.ValueType valueType, int value)
+        public void Set(Parameter param, int value)
         {
-            switch (valueType)
+            switch (param)
             {
-                case CharacterSettings.ValueType.ChargeDamage: ChargeDamage = value; break;
-                case CharacterSettings.ValueType.HitPoints: HitPoints = value; break;
-                case CharacterSettings.ValueType.Maneuver: Maneuver = value; break;
-                case CharacterSettings.ValueType.Speed: Speed = value; break;
-                default: throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                case Parameter.ChargeDamage: ChargeDamage = value; break;
+                case Parameter.HitPoints: HitPoints = value; break;
+                case Parameter.Maneuver: Maneuver = value; break;
+                case Parameter.Speed: Speed = value; break;
+                default: throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }
         }
 

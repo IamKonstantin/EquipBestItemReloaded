@@ -4,45 +4,10 @@ using static EquipBestItem.CharacterSettings;
 
 namespace EquipBestItem
 {
-    public enum ValueType
-    {
-        asdf
-    }
-
     [Serializable]
     public class CharacterSettings
     {
         public string Name { get; set; }
-
-        public enum ValueType
-        {
-            MaxDataValue,
-            ThrustSpeed,
-            SwingSpeed,
-            MissileSpeed,
-            WeaponLength,
-            ThrustDamage,
-            SwingDamage,
-            Accuracy,
-            Handling,
-            WeaponWeight,
-            WeaponBodyArmor,
-
-            HeadArmor = 40,
-            ArmorBodyArmor,
-            LegArmor,
-            ArmArmor,
-
-            ManeuverBonus = 50,
-            SpeedBonus,
-            ChargeBonus,
-            ArmorWeight,
-
-            ChargeDamage = 60,
-            HitPoints,
-            Maneuver,
-            Speed
-        }
 
         private List<FilterWeaponSettings> _filterWeapon;
 
@@ -84,13 +49,6 @@ namespace EquipBestItem
                 return _filterMount;
             }
             set => _filterMount = value;
-        }
-
-        public enum Category
-        {
-            Weapon,
-            Armor,
-            Mount
         }
 
         public enum ArmorSlot

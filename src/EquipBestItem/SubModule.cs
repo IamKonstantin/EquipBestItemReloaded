@@ -25,9 +25,10 @@ namespace EquipBestItem
                 // Add behavior to campaign game starter
                 AddBehaviours(gameStarterObject as CampaignGameStarter);
             }
-            catch (MBException e)
+            catch (System.Exception e)
             {
-                InformationManager.DisplayMessage(new InformationMessage("SubModule " + e.Message));
+                Helper.displayException(e);
+//                InformationManager.DisplayMessage(new InformationMessage("SubModule " + e.Message));
             }
         }
 

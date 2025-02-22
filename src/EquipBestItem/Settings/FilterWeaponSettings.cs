@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 namespace EquipBestItem
 {
+    [Serializable]
     public class FilterWeaponSettings
     {
         public int MaxDataValue { get; set; } = 1;

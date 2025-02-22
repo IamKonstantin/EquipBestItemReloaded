@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using static EquipBestItem.ClassSettings;
+//using static EquipBestItem.ClassSettings;
 
 namespace EquipBestItem
 {
     [Serializable]
     public class ClassSettings
     {
-        public FilterWeaponSettings FilterWeaponOneHanded { get; set; }
+        public String Name { get; set; }
         public ClassSettings()
         {
-        }
-        
-        void Set()
-        {
-
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
@@ -77,24 +78,6 @@ namespace EquipBestItem
             return null;
         }
 
-        public static void displayException(System.Exception ex)
-        {
-            if (ex == null)
-                return;
-            String message = ex.Message;
-            var stackTrace = new System.Diagnostics.StackTrace(ex, true);
-            var frame = stackTrace.GetFrame(0);
-            if (frame != null)
-            {
-                var method = frame.GetMethod();
-                String className = frame.GetMethod()?.DeclaringType?.Name ?? "Unknown class";
-                String methodName = frame.GetMethod()?.Name ?? "Unknown method";
-                int line = frame.GetFileLineNumber();
-                message += "\nFrom " + className + "::" + methodName + ":" + line;
-            }
-            InformationManager.DisplayMessage(new InformationMessage(message));
-        }
-
         /// <summary>
         /// Serializes data into a XML file
         /// </summary>
@@ -121,9 +104,9 @@ namespace EquipBestItem
                 // Serialize the data to the XML file
                 serializer.Serialize(writer, data, ns);
             }
-            catch
+            catch(System.Exception ex)
             {
-                throw new MBException(fileName + " serialize error");
+                displayException(ex);
             }
             finally
             {
@@ -156,9 +139,9 @@ namespace EquipBestItem
                     data = (T)serializer.Deserialize(xmlReader);
                 }
             }
-            catch
+            catch(System.Exception ex)
             {
-                throw new MBException(fileName + " deserialize error");
+                displayException(ex);
             }
             finally
             {
@@ -168,6 +151,33 @@ namespace EquipBestItem
                 }
             }
             return data;
+        }
+
+        public static void displayException(System.Exception ex)
+        {
+            if (ex == null)
+                return;
+            String message = ex.Message;
+            var stackTrace = new System.Diagnostics.StackTrace(ex, true);
+            var frame = stackTrace.GetFrame(0);
+            if (frame != null)
+            {
+                var method = frame.GetMethod();
+                String className = frame.GetMethod()?.DeclaringType?.Name ?? "Unknown class";
+                String methodName = frame.GetMethod()?.Name ?? "Unknown method";
+                int line = frame.GetFileLineNumber();
+                message += "\nFrom " + className + "::" + methodName + ":" + line;
+            }
+            InformationManager.DisplayMessage(new InformationMessage(message));
+        }
+
+        private static string _filePathLog = Path.Combine(BasePath.Name, "Modules", "EquipBestItem", "ModuleData", "log.txt");
+        public static void log(String text)
+        {
+            if (text == null)
+                return;
+            String prefix = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff: ", CultureInfo.InvariantCulture);
+            File.AppendAllText(_filePathLog, prefix + text);
         }
     }
 }

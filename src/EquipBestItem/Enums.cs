@@ -36,4 +36,15 @@
         Armor,
         Mount
     }
+
+    public enum Klass
+    {
+        WeaponOneHanded,
+        WeaponTwoHanded,
+
+        ArmorHead = 30,
+
+        Mount = 40,
+        MountArmor
+    }
 }

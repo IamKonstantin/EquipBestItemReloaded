@@ -61,50 +61,23 @@ public class SerializableDictionary<TKey, TValue>
     }
     #endregion
 
-    public static bool operator ==(SerializableDictionary<TKey, TValue> left,
-                              SerializableDictionary<TKey, TValue> right)
-    {
-        if (ReferenceEquals(left, right)) return true;
-        if (left is null || right is null) return false;
-        return left.Equals(right);
-    }
 
-    public static bool operator !=(SerializableDictionary<TKey, TValue> left,
-                                   SerializableDictionary<TKey, TValue> right)
-    {
-        return !(left == right);
-    }
+//    public override bool Equals(object obj) => Equals(obj);
+    //public override bool Equals(object obj)
+    //{
+    //    //var meBased = (Dictionary<TKey, TValue>)this;
+    //    //return meBased.Equals(obj);
 
-    public override bool Equals(object obj)
-    {
-        var other = obj as SerializableDictionary<TKey, TValue>;
-        if (other == null) return false;
+    //    //var objBased = (Dictionary<TKey, TValue>)obj;
+    //    return base.Equals(obj);
+        
 
-        if (Count != other.Count) return false;
+    //    //var objBased2 = obj as Dictionary<TKey, TValue>;
+    //    //if (objBased2 == null)
+    //    //    return false;
+    //    //else
+    //    //    return base.Equals(objBased2);
+    //}
 
-        var comparer = EqualityComparer<TValue>.Default;
-        foreach (var pair in this)
-        {
-            if (!other.TryGetValue(pair.Key, out TValue value) ||
-                !comparer.Equals(pair.Value, value))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public override int GetHashCode()
-    {
-        unchecked
-        {
-            int hash = 19;
-            foreach (var pair in this)
-            {
-                hash = hash * 31 + (pair.Key?.GetHashCode() ?? 0);
-                hash = hash * 31 + (pair.Value?.GetHashCode() ?? 0);
-            }
-            return hash;
-        }
-    }
+    public override int GetHashCode() => base.GetHashCode();
 }

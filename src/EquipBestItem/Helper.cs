@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
 
+
 namespace EquipBestItem
 {
     /// <summary>
@@ -36,14 +37,7 @@ namespace EquipBestItem
                 // Note: Errors can occur while invoking the method if
                 // the method has incorrect arguments or the method itself
                 // causes an error
-                try
-                {
-                    return methodInfo.Invoke(o, args);
-                }
-                catch
-                {
-                    throw new MBException(methodName + " GetField() exception");
-                }
+                return methodInfo.Invoke(o, args);
             }
             return null;
         }
@@ -59,21 +53,14 @@ namespace EquipBestItem
         {
             // Get field info from the given type
             var fieldInfo = o.GetType().GetField(fieldName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            
+
             // Get field value from the object if we have the field info
             // Otherwise, return null since there is no field info
             if (fieldInfo != null)
             {
                 // Note: Errors can occur when getting value from the object
                 // if the object causes an error when getting value
-                try
-                {
-                    return fieldInfo.GetValue(o);
-                }
-                catch
-                {
-                    throw new MBException(fieldName + " GetField() exception");
-                }
+                return fieldInfo.GetValue(o);
             }
             return null;
         }
@@ -104,10 +91,6 @@ namespace EquipBestItem
                 // Serialize the data to the XML file
                 serializer.Serialize(writer, data, ns);
             }
-            catch(System.Exception ex)
-            {
-                displayException(ex);
-            }
             finally
             {
                 // Closes the file if file was open before
@@ -130,6 +113,8 @@ namespace EquipBestItem
             XmlReader xmlReader = null;
             StreamReader streamReader = null;
             T data = default(T);
+            if (!File.Exists(fileName))
+                return data;
             try
             {
                 using (streamReader = new StreamReader(fileName))
@@ -138,10 +123,6 @@ namespace EquipBestItem
                     XmlSerializer serializer = new XmlSerializer(typeof(T));
                     data = (T)serializer.Deserialize(xmlReader);
                 }
-            }
-            catch(System.Exception ex)
-            {
-                displayException(ex);
             }
             finally
             {
@@ -153,31 +134,36 @@ namespace EquipBestItem
             return data;
         }
 
-        public static void displayException(System.Exception ex)
+        public static void displayException(System.Exception ex, String message = "Exception caught.")
         {
             if (ex == null)
                 return;
-            String message = ex.Message;
+            message += "\n";
+            message += ex.Message;
             var stackTrace = new System.Diagnostics.StackTrace(ex, true);
-            var frame = stackTrace.GetFrame(0);
-            if (frame != null)
-            {
-                var method = frame.GetMethod();
-                String className = frame.GetMethod()?.DeclaringType?.Name ?? "Unknown class";
-                String methodName = frame.GetMethod()?.Name ?? "Unknown method";
-                int line = frame.GetFileLineNumber();
-                message += "\nFrom " + className + "::" + methodName + ":" + line;
-            }
-            InformationManager.DisplayMessage(new InformationMessage(message));
+            message += "\nStack trace:\n";
+            message += stackTrace.ToString();
+            log(message, true);
         }
 
         private static string _filePathLog = Path.Combine(BasePath.Name, "Modules", "EquipBestItem", "ModuleData", "log.txt");
-        public static void log(String text)
+        public static void log(String text, bool error = false)
         {
             if (text == null)
                 return;
-            String prefix = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff: ", CultureInfo.InvariantCulture);
-            File.AppendAllText(_filePathLog, prefix + text);
+
+            String timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+            String messageFile = String.Format(CultureInfo.InvariantCulture, "{0} {1}: {2}", timestamp, error ? "ERROR" : "INFO", text);
+            File.AppendAllText(_filePathLog, messageFile);
+
+            int newLinePos = text.IndexOf('\n');
+            String messageGame = String.Format(CultureInfo.InvariantCulture, "EquipBestItem: {0}: {1}{2}",
+                error ? "ERROR" : "INFO",
+                newLinePos >= 0 ? text.Substring(0, newLinePos) : text,
+                newLinePos >= 0 ? "" : "...");
+            if (messageGame[messageGame.Length - 1] != '\n')
+                messageGame += '\n';
+            InformationManager.DisplayMessage(new InformationMessage(messageGame, new Color(error ? 1f : 0f, 0f, 0f)));
         }
     }
 }

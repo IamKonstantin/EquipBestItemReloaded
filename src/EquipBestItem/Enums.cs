@@ -37,14 +37,15 @@
         Mount
     }
 
-    public enum Klass
+    public enum WeaponClass
     {
-        WeaponOneHanded,
-        WeaponTwoHanded,
-
-        ArmorHead = 30,
-
-        Mount = 40,
+        OneHanded,
+        TwoHanded,
+    }
+    public enum ArmorType
+    {
+        ArmorHead,
         MountArmor
     }
+
 }

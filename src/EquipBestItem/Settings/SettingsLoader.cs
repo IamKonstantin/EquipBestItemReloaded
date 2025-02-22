@@ -15,7 +15,6 @@ namespace EquipBestItem
         public Settings Settings { get; private set; }
 
         public List<CharacterSettings> CharacterSettings { get; private set; }
-        public ClassSettings ClassSettings { get; private set; }
 
         private SettingsLoader()
         {
@@ -103,7 +102,6 @@ namespace EquipBestItem
             try
             {
                 Helper.Serialize<List<CharacterSettings>>(_filePathCharacterSettings, this.CharacterSettings);
-                Helper.Serialize<ClassSettings>(_filePathCharacterSettings, this.ClassSettings);
             }
             catch (MBException e)
             {

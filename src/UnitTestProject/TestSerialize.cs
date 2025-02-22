@@ -64,7 +64,6 @@ namespace UnitTestProject
         [TestMethod]
         public void Test03CompatibilityEqualOperators()
         {
-            int i = 0;
             var buildInStringToInt = new Dictionary<String, int>();
             buildInStringToInt["One"] = 3;
             var buildInStringToIntEqualInContent = new Dictionary<String, int>();
@@ -247,13 +246,6 @@ namespace UnitTestProject
         {
             SettingsLoader.Instance.SaveSettings();
             SettingsLoader.Instance.SaveCharacterSettings();
-        }
-
-        [TestMethod]
-        public void TestSaveClassSettings()
-        {
-            
-            ClassSettings cs = new ClassSettings();
         }
     }
 }

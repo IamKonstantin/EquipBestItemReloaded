@@ -20,7 +20,7 @@ public class SerializableDictionary<TKey, TValue>
     public void ReadXml(System.Xml.XmlReader reader)
     {
         if (reader == null)
-            throw new ArgumentNullException(nameof(reader), "123");
+            return;
         XmlSerializer keySerializer = new XmlSerializer(typeof(TKey));
         XmlSerializer valueSerializer = new XmlSerializer(typeof(TValue));
 
@@ -44,6 +44,9 @@ public class SerializableDictionary<TKey, TValue>
 
     public void WriteXml(System.Xml.XmlWriter writer)
     {
+        if (writer == null)
+            return;
+
         XmlSerializer keySerializer = new XmlSerializer(typeof(TKey));
         XmlSerializer valueSerializer = new XmlSerializer(typeof(TValue));
 
@@ -60,24 +63,4 @@ public class SerializableDictionary<TKey, TValue>
         }
     }
     #endregion
-
-
-//    public override bool Equals(object obj) => Equals(obj);
-    //public override bool Equals(object obj)
-    //{
-    //    //var meBased = (Dictionary<TKey, TValue>)this;
-    //    //return meBased.Equals(obj);
-
-    //    //var objBased = (Dictionary<TKey, TValue>)obj;
-    //    return base.Equals(obj);
-        
-
-    //    //var objBased2 = obj as Dictionary<TKey, TValue>;
-    //    //if (objBased2 == null)
-    //    //    return false;
-    //    //else
-    //    //    return base.Equals(objBased2);
-    //}
-
-    public override int GetHashCode() => base.GetHashCode();
 }

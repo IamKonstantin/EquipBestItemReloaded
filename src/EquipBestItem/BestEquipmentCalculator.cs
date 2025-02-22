@@ -129,7 +129,7 @@ namespace EquipBestItem
                     thrustSpeed = mod.ModifySpeed(thrustSpeed);
                 if (maxDataValue > 0f)
                 {
-                    if(primaryWeaponItem.WeaponClass == WeaponClass.SmallShield || primaryWeaponItem.WeaponClass == WeaponClass.LargeShield)
+                    if(primaryWeaponItem.WeaponClass == TaleWorlds.Core.WeaponClass.SmallShield || primaryWeaponItem.WeaponClass == TaleWorlds.Core.WeaponClass.LargeShield)
                     {
                         maxDataValue = mod.ModifyHitPoints((short)maxDataValue);
                     }
@@ -172,8 +172,8 @@ namespace EquipBestItem
             // Determine how the value is calculated based on the weapon class of the primary weapon
             switch (primaryWeaponItem.WeaponClass)
             {
-                case WeaponClass.SmallShield:
-                case WeaponClass.LargeShield:
+                case TaleWorlds.Core.WeaponClass.SmallShield:
+                case TaleWorlds.Core.WeaponClass.LargeShield:
                     // Weight, HitPoints
                     sum = Math.Abs(filterWeapon.MaxDataValue) + Math.Abs(filterWeapon.WeaponWeight);
                     value = weightMaxDataValue + weightWeaponWeight;
@@ -182,8 +182,8 @@ namespace EquipBestItem
                     InformationManager.DisplayMessage(new InformationMessage("Shield"));
 #endif
                     break;
-                case WeaponClass.Crossbow:
-                case WeaponClass.Bow:
+                case TaleWorlds.Core.WeaponClass.Crossbow:
+                case TaleWorlds.Core.WeaponClass.Bow:
                     // Weight, Thrust Damage, Accuracy, Missile Speed
                     sum = Math.Abs(filterWeapon.WeaponWeight) +
                           Math.Abs(filterWeapon.ThrustDamage) +
@@ -195,9 +195,9 @@ namespace EquipBestItem
                     InformationManager.DisplayMessage(new InformationMessage("Shield"));
 #endif
                     break;
-                case WeaponClass.Javelin:
-                case WeaponClass.ThrowingAxe:
-                case WeaponClass.ThrowingKnife:
+                case TaleWorlds.Core.WeaponClass.Javelin:
+                case TaleWorlds.Core.WeaponClass.ThrowingAxe:
+                case TaleWorlds.Core.WeaponClass.ThrowingKnife:
                     // Weight, Length, Thrust Damage, Missile Speed, Accuracy, MaxDataValue (Stack Amount)
                     sum = Math.Abs(filterWeapon.WeaponWeight) +
                           Math.Abs(filterWeapon.WeaponLength) +
@@ -216,11 +216,11 @@ namespace EquipBestItem
                     InformationManager.DisplayMessage(new InformationMessage("Javelin/Throwing Axe/Throwing Knife"));
 #endif
                     break;
-                case WeaponClass.OneHandedSword:
-                case WeaponClass.TwoHandedSword:
-                case WeaponClass.LowGripPolearm:
-                case WeaponClass.OneHandedPolearm:
-                case WeaponClass.TwoHandedPolearm:
+                case TaleWorlds.Core.WeaponClass.OneHandedSword:
+                case TaleWorlds.Core.WeaponClass.TwoHandedSword:
+                case TaleWorlds.Core.WeaponClass.LowGripPolearm:
+                case TaleWorlds.Core.WeaponClass.OneHandedPolearm:
+                case TaleWorlds.Core.WeaponClass.TwoHandedPolearm:
                     // Weight, Length, Handling, Swing Speed, Swing Damage, Thrust Speed, Thrust Damage
                     sum = Math.Abs(filterWeapon.WeaponWeight) +
                           Math.Abs(filterWeapon.WeaponLength) +
@@ -238,8 +238,8 @@ namespace EquipBestItem
                             weightThrustDamage;
 
 #if DEBUG
-                    if (primaryWeaponItem.WeaponClass >= WeaponClass.OneHandedPolearm &&
-                        primaryWeaponItem.WeaponClass <= WeaponClass.LowGripPolearm)
+                    if (primaryWeaponItem.WeaponClass >= TaleWorlds.Core.WeaponClass.OneHandedPolearm &&
+                        primaryWeaponItem.WeaponClass <= TaleWorlds.Core.WeaponClass.LowGripPolearm)
                     {
                         InformationManager.DisplayMessage(new InformationMessage("Low Grip/One Handed/Two Handed Polearm"));
                     }
@@ -249,10 +249,10 @@ namespace EquipBestItem
                     }
 #endif
                     break;
-                case WeaponClass.OneHandedAxe:
-                case WeaponClass.TwoHandedAxe:
-                case WeaponClass.Mace:
-                case WeaponClass.TwoHandedMace:
+                case TaleWorlds.Core.WeaponClass.OneHandedAxe:
+                case TaleWorlds.Core.WeaponClass.TwoHandedAxe:
+                case TaleWorlds.Core.WeaponClass.Mace:
+                case TaleWorlds.Core.WeaponClass.TwoHandedMace:
                     // Weight, Swing Speed, Swing Damage, Length, Handling
                     sum = Math.Abs(filterWeapon.WeaponWeight) +
                           Math.Abs(filterWeapon.SwingSpeed) +
@@ -265,8 +265,8 @@ namespace EquipBestItem
                             weightWeaponLength +
                             weightHandling;
 #if DEBUG
-                    if (primaryWeaponItem.WeaponClass >= WeaponClass.OneHandedAxe &&
-                        primaryWeaponItem.WeaponClass <= WeaponClass.TwoHandedAxe)
+                    if (primaryWeaponItem.WeaponClass >= TaleWorlds.Core.WeaponClass.OneHandedAxe &&
+                        primaryWeaponItem.WeaponClass <= TaleWorlds.Core.WeaponClass.TwoHandedAxe)
                     {
                         InformationManager.DisplayMessage(new InformationMessage("One Handed/Two Handed Axe"));
                     }
@@ -277,8 +277,8 @@ namespace EquipBestItem
 #endif
                     break;
 
-                case WeaponClass.Arrow:
-                case WeaponClass.Bolt:
+                case TaleWorlds.Core.WeaponClass.Arrow:
+                case TaleWorlds.Core.WeaponClass.Bolt:
                     sum = Math.Abs(filterWeapon.WeaponWeight) +
                           Math.Abs(filterWeapon.Accuracy) +
                           Math.Abs(filterWeapon.ThrustDamage) +
@@ -293,7 +293,7 @@ namespace EquipBestItem
                     break;
 
                 default:
-                    sum = 
+                    sum =
                         Math.Abs(filterWeapon.Accuracy) +
                         Math.Abs(filterWeapon.WeaponBodyArmor) +
                         Math.Abs(filterWeapon.Handling) +

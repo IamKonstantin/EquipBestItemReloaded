@@ -24,11 +24,11 @@ namespace EquipBestItem
 
                 // Add behavior to campaign game starter
                 AddBehaviours(gameStarterObject as CampaignGameStarter);
+                Helper.log("Welcome to Equip Best Item by Its Class");
             }
-            catch (System.Exception e)
+            catch(System.Exception e)
             {
-                Helper.displayException(e);
-//                InformationManager.DisplayMessage(new InformationMessage("SubModule " + e.Message));
+                Helper.displayException(e, "Can't initialize mod on game start");
             }
         }
 
